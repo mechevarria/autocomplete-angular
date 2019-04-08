@@ -20,10 +20,9 @@ import { DataTablesModule } from 'angular-datatables';
 import { FormComponent } from './form/form.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
-import { AppMapComponent } from './app-map/app-map.component';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryApiService } from './in-memory-api.service';
+import { AutocompleteComponent } from './autocomplete/autocomplete.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +34,7 @@ import { InMemoryApiService } from './in-memory-api.service';
     ChartsComponent,
     FormComponent,
     SidebarComponent,
-    AppMapComponent
+    AutocompleteComponent
   ],
   imports: [
     BrowserModule,
@@ -52,9 +51,6 @@ import { InMemoryApiService } from './in-memory-api.service';
     ToastrModule.forRoot({
       closeButton: true,
       progressBar: true
-    }),
-    NgxMapboxGLModule.withConfig({
-      accessToken: 'pk.eyJ1IjoibWVjaGV2YXJyaWEiLCJhIjoiY2pxbXNuMXF0MGwzNTQ5bzJwNGtyMTRqdyJ9.WZfALlPxuOveabQDrroLcQ'
     }),
     HttpClientInMemoryWebApiModule.forRoot(InMemoryApiService, {
       dataEncapsulation: false,

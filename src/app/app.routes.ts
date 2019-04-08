@@ -3,7 +3,7 @@ import {HomeComponent} from './home/home.component';
 import {TableComponent} from './table/table.component';
 import {ChartsComponent} from './charts/charts.component';
 import {FormComponent} from './form/form.component';
-import { AppMapComponent } from './app-map/app-map.component';
+import { AutocompleteComponent } from './autocomplete/autocomplete.component';
 
 export const AppRoutes: Routes = [
   {
@@ -35,10 +35,10 @@ export const AppRoutes: Routes = [
         }
       },
       {
-        path: 'map',
-        component: AppMapComponent,
+        path: 'autocomplete',
+        component: AutocompleteComponent,
         data: {
-          breadcrumb: 'Map'
+          breadcrumb: 'Auto-Complete'
         }
       }
     ]
