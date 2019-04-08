@@ -5,12 +5,6 @@ import {catchError} from 'rxjs/operators';
 import {MessageService} from '../message/message.service';
 import {Observable, of} from 'rxjs/index';
 
-
-const httpOptions = {
-  headers: new HttpHeaders({'Content-Type': 'application/json'})
-};
-
-
 @Injectable({
   providedIn: 'root'
 })

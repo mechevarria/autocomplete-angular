@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductService } from './product.service';
+import { Product } from './product';
 
 @Component({
   selector: 'app-autocomplete',
@@ -6,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./autocomplete.component.css']
 })
 export class AutocompleteComponent implements OnInit {
+  data: Product[];
 
-  constructor() { }
+  constructor(private productService: ProductService) {}
 
   ngOnInit() {
+    this.productService.getProducts().subscribe(res => {
+      this.data = res;
+    });
   }
-
 }
