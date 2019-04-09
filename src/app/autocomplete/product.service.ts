@@ -9,13 +9,12 @@ import { Product } from './product';
   providedIn: 'root'
 })
 export class ProductService {
-  private testUrl = 'assets/data/test.json';
   private localUrl = 'assets/data/products.json';
 
   constructor(private messageService: MessageService, private http: HttpClient) {}
 
   getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.testUrl).pipe(
+    return this.http.get<Product[]>(this.localUrl).pipe(
       catchError(err => {
         return this.handleError('getProducts', err);
       })

@@ -17,12 +17,12 @@ import { CommonModule } from '@angular/common';
 import { ChartsComponent } from './charts/charts.component';
 import { ChartsModule } from 'ng2-charts';
 import { DataTablesModule } from 'angular-datatables';
-import { FormComponent } from './form/form.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryApiService } from './in-memory-api.service';
 import { AutocompleteComponent } from './autocomplete/autocomplete.component';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 
 @NgModule({
   declarations: [
@@ -32,7 +32,6 @@ import { AutocompleteComponent } from './autocomplete/autocomplete.component';
     HeaderComponent,
     BreadcrumbComponent,
     ChartsComponent,
-    FormComponent,
     SidebarComponent,
     AutocompleteComponent
   ],
@@ -55,7 +54,8 @@ import { AutocompleteComponent } from './autocomplete/autocomplete.component';
     HttpClientInMemoryWebApiModule.forRoot(InMemoryApiService, {
       dataEncapsulation: false,
       passThruUnknownUrl: true
-    })
+    }),
+    TypeaheadModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
