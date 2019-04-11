@@ -20,6 +20,7 @@ export class AutocompleteComponent implements OnInit {
   typeaheadLoading: boolean;
   products: Product[];
   loadingIcon: IconDefinition = faCircleNotch;
+  documents: any[];
 
   constructor(private productService: ProductService) {}
 
@@ -54,5 +55,9 @@ export class AutocompleteComponent implements OnInit {
       // Runs on every search
       observer.next(this.asyncSelected);
     }).pipe(mergeMap((token: string) => this.search(token)));
+
+    this.productService.getFireProducts().subscribe(res => {
+      this.documents = res;
+    });
   }
 }

@@ -1,8 +1,8 @@
-import {Routes} from '@angular/router';
-import {HomeComponent} from './home/home.component';
-import {TableComponent} from './table/table.component';
-import {ChartsComponent} from './charts/charts.component';
+import { Routes } from '@angular/router';
+import { HomeComponent } from './home/home.component';
+import { ChartsComponent } from './charts/charts.component';
 import { AutocompleteComponent } from './autocomplete/autocomplete.component';
+import { UploadComponent } from './upload/upload.component';
 
 export const AppRoutes: Routes = [
   {
@@ -20,17 +20,17 @@ export const AppRoutes: Routes = [
         }
       },
       {
-        path: 'table',
-        component: TableComponent,
-        data: {
-          breadcrumb: 'Table'
-        }
-      },
-      {
         path: 'autocomplete',
         component: AutocompleteComponent,
         data: {
           breadcrumb: 'Auto-Complete'
+        }
+      },
+      {
+        path: 'upload',
+        component: UploadComponent,
+        data: {
+          breadcrumb: 'Upload'
         }
       }
     ]

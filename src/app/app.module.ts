@@ -7,7 +7,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AppRoutes } from './app.routes';
 import { BsDropdownModule, CollapseModule } from 'ngx-bootstrap';
-import { TableComponent } from './table/table.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -16,25 +15,29 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { ChartsComponent } from './charts/charts.component';
 import { ChartsModule } from 'ng2-charts';
-import { DataTablesModule } from 'angular-datatables';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryApiService } from './in-memory-api.service';
 import { AutocompleteComponent } from './autocomplete/autocomplete.component';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { UploadComponent } from './upload/upload.component';
+import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
+
+
+const config = {
+  apiKey: 'AIzaSyDLHBywzkv0bHxXj0bmGuhu3LXuSz8ILG0',
+  authDomain: 'autocomplete-d62e3.firebaseapp.com',
+  databaseURL: 'https://autocomplete-d62e3.firebaseio.com',
+  projectId: 'autocomplete-d62e3',
+  storageBucket: 'autocomplete-d62e3.appspot.com',
+  messagingSenderId: '941808097489'
+};
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    TableComponent,
-    HomeComponent,
-    HeaderComponent,
-    BreadcrumbComponent,
-    ChartsComponent,
-    SidebarComponent,
-    AutocompleteComponent
-  ],
+  declarations: [AppComponent, HomeComponent, HeaderComponent, BreadcrumbComponent, ChartsComponent, SidebarComponent, AutocompleteComponent, UploadComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -46,7 +49,6 @@ import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
     CommonModule,
     BrowserAnimationsModule,
     ChartsModule,
-    DataTablesModule,
     ToastrModule.forRoot({
       closeButton: true,
       progressBar: true
@@ -55,7 +57,10 @@ import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
       dataEncapsulation: false,
       passThruUnknownUrl: true
     }),
-    TypeaheadModule.forRoot()
+    TypeaheadModule.forRoot(),
+    AngularFireModule.initializeApp(config),
+    AngularFirestoreModule,
+    ProgressbarModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

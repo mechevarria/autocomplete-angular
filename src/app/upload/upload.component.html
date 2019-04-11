@@ -1,0 +1,15 @@
+<div class="card-deck">
+  <div class="card">
+    <div class="card-header">
+      Upload
+    </div>
+    <div class="card-body text-center">
+      <p class="card-text">
+        The button below will upload {{ count }} documents into the <strong>products</strong> Firestore collection
+      </p>
+      <pre>{{ fireCount }} documents already uploaded</pre>
+      <button class="btn btn-primary btn-lg mb-3" type="button" [disabled]="disabled" (click)="doUpload()">Upload</button>
+      <progressbar max="100" [value]="percent" type="success" [animate]="true"></progressbar>
+    </div>
+  </div>
+</div>
