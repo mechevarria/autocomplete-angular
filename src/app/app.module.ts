@@ -26,14 +26,13 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { UploadComponent } from './upload/upload.component';
 import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
 
-
 const config = {
-  apiKey: 'AIzaSyDLHBywzkv0bHxXj0bmGuhu3LXuSz8ILG0',
-  authDomain: 'autocomplete-d62e3.firebaseapp.com',
-  databaseURL: 'https://autocomplete-d62e3.firebaseio.com',
-  projectId: 'autocomplete-d62e3',
-  storageBucket: 'autocomplete-d62e3.appspot.com',
-  messagingSenderId: '941808097489'
+  apiKey: window['_env'].apiKey,
+  authDomain: window['_env'].authDomain,
+  databaseURL: window['_env'].databaseURL,
+  projectId: window['_env'].projectId,
+  storageBucket: window['_env'].storageBucket,
+  messagingSenderId: window['_env'].messagingSenderId
 };
 
 @NgModule({
@@ -59,6 +58,7 @@ const config = {
     }),
     TypeaheadModule.forRoot(),
     AngularFireModule.initializeApp(config),
+    AngularFirestoreModule.enablePersistence(),
     AngularFirestoreModule,
     ProgressbarModule.forRoot()
   ],

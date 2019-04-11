@@ -35,7 +35,6 @@ export class UploadComponent implements OnInit {
     });
 
     this.productService.getFireProducts().subscribe(res => {
-      console.log(res);
       this.fireCount = res.length;
     });
   }

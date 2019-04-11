@@ -56,8 +56,8 @@ export class AutocompleteComponent implements OnInit {
       observer.next(this.asyncSelected);
     }).pipe(mergeMap((token: string) => this.search(token)));
 
-    this.productService.getFireProducts().subscribe(res => {
-      this.documents = res;
-    });
+    // this.productService.getFireProducts().subscribe(res => {
+    //   this.documents = res;
+    // });
   }
 }
