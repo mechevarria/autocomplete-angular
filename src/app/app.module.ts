@@ -28,11 +28,11 @@ import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
 
 const config = {
   apiKey: window['_env'].apiKey,
-  authDomain: window['_env'].authDomain,
-  databaseURL: window['_env'].databaseURL,
-  projectId: window['_env'].projectId,
-  storageBucket: window['_env'].storageBucket,
-  messagingSenderId: window['_env'].messagingSenderId
+  authDomain: 'autocomplete-d62e3.firebaseapp.com',
+  databaseURL: 'https://autocomplete-d62e3.firebaseio.com',
+  projectId: 'autocomplete-d62e3',
+  storageBucket: 'autocomplete-d62e3.appspot.com',
+  messagingSenderId: '941808097489'
 };
 
 @NgModule({
