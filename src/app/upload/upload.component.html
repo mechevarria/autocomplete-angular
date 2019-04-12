@@ -5,9 +5,8 @@
     </div>
     <div class="card-body text-center">
       <p class="card-text">
-        The button below will upload {{ count }} documents into the <strong>products</strong> Firestore collection
+        The button below will upload {{ count }} products in batches of {{ batch }} into a Firestore collection. There are {{ split.length }} batch items left to upload.
       </p>
-      <pre>{{ fireCount }} documents already uploaded</pre>
       <button class="btn btn-primary btn-lg mb-3" type="button" [disabled]="disabled" (click)="doUpload()">Upload</button>
       <progressbar max="100" [value]="percent" type="success" [animate]="true"></progressbar>
     </div>

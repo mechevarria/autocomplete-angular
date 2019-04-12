@@ -18,9 +18,9 @@ export class AutocompleteComponent implements OnInit {
   dataSource: Observable<any>;
   selected: Product;
   typeaheadLoading: boolean;
-  products: Product[];
+  products: Product[] = new Array();
   loadingIcon: IconDefinition = faCircleNotch;
-  documents: any[];
+  disabled = true;
 
   constructor(private productService: ProductService) {}
 
@@ -48,16 +48,16 @@ export class AutocompleteComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.productService.getProducts().subscribe(res => {
-      this.products = res;
+    this.productService.getFireDocs().subscribe(res => {
+      res.forEach(doc => {
+        this.products = this.products.concat(doc.products);
+      });
+
+      this.disabled = false;
     });
     this.dataSource = Observable.create((observer: any) => {
       // Runs on every search
       observer.next(this.asyncSelected);
     }).pipe(mergeMap((token: string) => this.search(token)));
-
-    // this.productService.getFireProducts().subscribe(res => {
-    //   this.documents = res;
-    // });
   }
 }

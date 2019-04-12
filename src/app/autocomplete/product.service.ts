@@ -18,9 +18,9 @@ export class ProductService {
     return this.http.get<Product[]>(this.localUrl).pipe(catchError(err => this.handleError('getProducts', err)));
   }
 
-  getFireProducts(): Observable<any[]> {
+  getFireDocs() {
     return this.firestore
-      .collection('products')
+      .collection('json')
       .valueChanges()
       .pipe(catchError(err => this.handleError('getProducts', err)));
   }
