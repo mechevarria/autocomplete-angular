@@ -8,7 +8,7 @@ import { Product } from '../autocomplete/product';
 export class UploadService {
   constructor(private db: AngularFirestore) {}
 
-  upload(data: any): Promise<DocumentReference> {
-    return this.db.collection('json').add(data);
+  upload(data: any, collection: string): Promise<DocumentReference> {
+    return this.db.collection(collection).add(data);
   }
 }

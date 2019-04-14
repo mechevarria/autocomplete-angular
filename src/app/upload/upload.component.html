@@ -3,12 +3,22 @@
     <div class="card-header">
       Upload
     </div>
-    <div class="card-body text-center">
+    <div class="card-body">
+      <div class="form-group">
+        <label>Collection Name</label>
+        <input type="text" class="form-control" [(ngModel)]="collection">
+      </div>
       <p class="card-text">
-        The button below will upload {{ count }} products in batches of {{ batch }} into a Firestore collection. There are {{ split.length }} batch items left to upload.
+        The button below will upload {{ count }} products in batches of {{ batch }} into a Firestore collection <strong>{{ collection }}</strong>. There are
+        {{ split.length }}
+        batch items left
+        to upload.
       </p>
-      <button class="btn btn-primary btn-lg mb-3" type="button" [disabled]="disabled" (click)="doUpload()">Upload</button>
-      <progressbar max="100" [value]="percent" type="success" [animate]="true"></progressbar>
+      <button class="btn btn-primary btn-lg mb-3 mr-2" type="button" [disabled]="disabled" (click)="doUpload()">Upload</button>
+      <button class="btn btn-secondary btn-lg mb-3 mr-2" type="button" (click)="toggleCancel()">Cancel</button>
+
+      <progressbar max="100" [value]="percent" type="success" [animate]="true" class="progress-striped active">
+      </progressbar>
     </div>
   </div>
 </div>

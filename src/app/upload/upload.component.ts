@@ -16,23 +16,36 @@ export class UploadComponent implements OnInit {
   percent = 0;
   percentChunk = 0;
   disabled = true;
+  collection = 'json';
+  isCancelled = false;
 
   constructor(private messageService: MessageService, private uploadService: UploadService, private productService: ProductService) {}
 
+  toggleCancel(): void {
+    this.isCancelled = !this.isCancelled;
+    this.messageService.info(`isCancelled = ${this.isCancelled}`);
+  }
+
   doUpload() {
     this.disabled = true;
-    this.uploadService
-      .upload(this.split[0])
-      .then((ref: DocumentReference) => {
-        this.percent = this.percent + this.percentChunk;
-        this.messageService.success(`Uploaded. Document id is ${ref.id}`);
-        this.split.shift();
+    this.recursiveUpload(this.split);
+  }
 
-        if (this.split.length > 0) {
-          this.disabled = false;
-        }
-      })
-      .catch(err => this.messageService.error(err));
+  recursiveUpload(splitArray: any) {
+    if (this.isCancelled || splitArray.length === 0) {
+      this.disabled = false;
+      return true;
+    } else {
+      this.uploadService
+        .upload(splitArray[0], this.collection)
+        .then((ref: DocumentReference) => {
+          this.percent = this.percent + this.percentChunk;
+          this.messageService.success(`Uploaded. Document id is ${ref.id}`);
+          splitArray.shift();
+          this.recursiveUpload(splitArray);
+        })
+        .catch(err => this.messageService.error(err));
+    }
   }
 
   ngOnInit() {

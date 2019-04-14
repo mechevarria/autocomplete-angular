@@ -13,8 +13,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
-import { ChartsComponent } from './charts/charts.component';
-import { ChartsModule } from 'ng2-charts';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -36,7 +34,7 @@ const config = {
 };
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, HeaderComponent, BreadcrumbComponent, ChartsComponent, SidebarComponent, AutocompleteComponent, UploadComponent],
+  declarations: [AppComponent, HomeComponent, HeaderComponent, BreadcrumbComponent, SidebarComponent, AutocompleteComponent, UploadComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -47,7 +45,6 @@ const config = {
     CollapseModule.forRoot(),
     CommonModule,
     BrowserAnimationsModule,
-    ChartsModule,
     ToastrModule.forRoot({
       closeButton: true,
       progressBar: true
