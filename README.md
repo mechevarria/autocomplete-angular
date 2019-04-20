@@ -1,49 +1,28 @@
 # Autocomplete Angular
 
-Starter seed project for [Angular](https://angular.io/) and [Bootstrap](https://getbootstrap.com/).  This project was generated with [Angular CLI](https://github.com/angular/angular-cli).
+[Angular](https://angular.io/) and [Bootstrap](https://getbootstrap.com/) application run on an [Express](https://expressjs.com/) server that queries [Cloud Firestore](https://firebase.google.com/docs/firestore/) to back a product autocomplete using the Best Buy [open-data-set](https://firebase.google.com/docs/firestore/). Also includes an upload page to send the same [products.json](https://github.com/BestBuyAPIs/open-data-set/blob/master/products.json) into Cloud Firestore
 
  ![screenshot.png](screenshot.png)
 
-## Install
+## Requirements
 
-Run `npm install` to dowload the project dependencies
+* A local installation of [nodejs](https://nodejs.org/en/) or [docker ce](https://docs.docker.com/install/)
+* A cloud firestore [api key](https://firebase.google.com/docs/firestore/quickstart) set to an environment variable named `API_KEY`
 
-## Development server
+## Build and Run
+### Local
 
-Run `ng run local` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `npm install` to dowload the project dependencies and then `npm run build` to do a production build. Start the express server with the `run-local.sh` script.
 
-## Code scaffolding
+The application will be available at [http://localhost:4200](http://localhost:4200)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Docker
+Run `docker-build.sh` then `docker-run.sh`
 
-## Build
+The application will be available at [http://localhost:8080](http://localhost:8080)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+## Development
 
-## Running on OpenShift
-Requires an accessible [OpenShift Container Platform](https://www.openshift.com/container-platform/index.html) install
+Run `npm run buildDev` for a dev build that will actively watch for changes and rebuild.
+Run `run-local.sh` in a separate bash prompt to start the express server at [http://localhost:4200](http://localhost:4200)
 
-For local development you can use [MiniShift](https://docs.openshift.org/latest/minishift/getting-started/installing.html)
-
-### Create the New Application
-
-Select `Add to Project -> Catalog -> JavaScript -> Node.js`.  Make sure the version is **8** or higher
-* Name **autocomplete-angular**
-* Git Repository URL **https://github.com/mechevarria/autocomplete-angular**
-* Click create
-
-The default build will run a `npm install` command and then `npm run start`.
-  
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
-
-To get started with Angular, this is an excellent official [tutorial](https://angular.io/tutorial)
-
-Dropdown components were created using [ngx-bootstrap](https://github.com/valor-software/ngx-bootstrap)
-
-Chart library by [ng2-charts](https://valor-software.com/ng2-charts/)
-
-Table implementation done with [angular-datatables](https://l-lin.github.io/angular-datatables/#/welcome)
-
-Toast notification done with [ngx-toastr](https://scttcper.github.io/ngx-toastr/)
