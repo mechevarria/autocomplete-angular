@@ -21,10 +21,10 @@ export class ProductService {
 
   getProductsMock(token: string): Observable<Product[]> {
     let query: RegExp;
-    try {
+    if (token === null || token.length < 2) {
+      return of(null);
+    } else {
       query = new RegExp(token, 'i');
-    } catch (error) {
-      query = new RegExp(null, 'i');
     }
     return this.http.get<Product[]>(this.mockUrl).pipe(
       map((products: Product[]) => products.filter((product: Product) => {

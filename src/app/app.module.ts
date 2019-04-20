@@ -55,6 +55,7 @@ const config = {
     }),
     TypeaheadModule.forRoot(),
     AngularFireModule.initializeApp(config),
+    // AngularFirestoreModule.enablePersistence(),
     AngularFirestoreModule,
     ProgressbarModule.forRoot()
   ],
