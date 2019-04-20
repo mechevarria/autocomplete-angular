@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-registry=localhost
-project=demo
-app=autocomplete
+registry=gcr.io
+project=autocomplete-d62e3
+app=autocomplete-app
 source_location=.
 tag=${registry}/${project}/${app}:latest
 
