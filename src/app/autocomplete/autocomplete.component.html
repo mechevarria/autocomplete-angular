@@ -4,17 +4,16 @@
       Auto complete
     </div>
     <div class="card-body">
-      <input [(ngModel)]="asyncSelected" [typeaheadAsync]="true" [typeahead]="dataSource"
-        (typeaheadOnSelect)="typeaheadOnSelect($event)" [typeaheadOptionsLimit]="7" typeaheadOptionField="name"
-        (typeaheadLoading)="changeTypeaheadLoading($event)" typeaheadWaitMs="500" placeholder="Product name"
-        class="form-control" [disabled]="disabled">
+      <input [(ngModel)]="asyncSelected" [typeaheadAsync]="true" [typeahead]="dataSource" (typeaheadOnSelect)="typeaheadOnSelect($event)"
+        [typeaheadOptionsLimit]="7" typeaheadOptionField="name" (typeaheadLoading)="changeTypeaheadLoading($event)" typeaheadWaitMs="500"
+        placeholder="Product name" class="form-control">
       <div class="m-2" *ngIf="typeaheadLoading">
         <fa-icon [icon]="loadingIcon" [spin]="true" class="fa-2x" [styles]="{'color': '#20a8d8'}"></fa-icon>
       </div>
 
       <div class="d-flex mt-5" *ngIf="selected">
         <div class="mr-2 flex-fill">
-          <a [href]="selected.url" target="_blank"><img [src]="selected.image" alt="Product Image"/></a>
+          <a [href]="selected.url" target="_blank"><img [src]="selected.image" alt="Product Image" /></a>
         </div>
         <div class="flex-fill">
           <ul class="list-group list-group-flush">

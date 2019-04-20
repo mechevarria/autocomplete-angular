@@ -3,6 +3,7 @@ import { UploadService } from './upload.service';
 import { ProductService } from '../autocomplete/product.service';
 import { MessageService } from '../message/message.service';
 import { DocumentReference } from '@angular/fire/firestore';
+import { Product } from '../autocomplete/product';
 
 @Component({
   selector: 'app-upload',
@@ -10,13 +11,12 @@ import { DocumentReference } from '@angular/fire/firestore';
   styleUrls: ['./upload.component.css']
 })
 export class UploadComponent implements OnInit {
-  split: any[] = new Array();
-  batch = 1000;
+  products: Product[] = new Array();
   count = 0;
   percent = 0;
-  percentChunk = 0;
+  uploaded = 0;
   disabled = true;
-  collection = 'json';
+  collection = 'products';
   isCancelled = false;
 
   constructor(private messageService: MessageService, private uploadService: UploadService, private productService: ProductService) {}
@@ -28,42 +28,30 @@ export class UploadComponent implements OnInit {
 
   doUpload() {
     this.disabled = true;
-    this.recursiveUpload(this.split);
+    this.recursiveUpload(this.products);
   }
 
-  recursiveUpload(splitArray: any) {
-    if (this.isCancelled || splitArray.length === 0) {
+  recursiveUpload(products: Product[]) {
+    if (this.isCancelled || products.length === 0) {
       this.disabled = false;
       return true;
     } else {
       this.uploadService
-        .upload(splitArray[0], this.collection)
+        .upload(products[0], this.collection)
         .then((ref: DocumentReference) => {
-          this.percent = this.percent + this.percentChunk;
-          this.messageService.success(`Uploaded. Document id is ${ref.id}`);
-          splitArray.shift();
-          this.recursiveUpload(splitArray);
+          this.uploaded++;
+          this.percent = (this.uploaded / this.count ) * 100;
+          this.products.shift();
+          this.recursiveUpload(products);
         })
         .catch(err => this.messageService.error(err));
     }
   }
 
   ngOnInit() {
-    this.productService.getProducts().subscribe(res => {
+    this.productService.getProductsLocal().subscribe(res => {
       this.count = res.length;
-
-      while (res.length > 0) {
-        if (res.length < this.batch) {
-          this.split.push({
-            products: res.splice(0, res.length)
-          });
-        } else {
-          this.split.push({
-            products: res.splice(0, this.batch)
-          });
-        }
-      }
-      this.percentChunk = 100 / this.split.length;
+      this.products = res;
       this.disabled = false;
     });
   }
