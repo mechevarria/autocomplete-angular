@@ -5,7 +5,7 @@
     </div>
     <div class="card-body">
       <input [(ngModel)]="asyncSelected" [typeaheadAsync]="true" [typeahead]="dataSource" (typeaheadOnSelect)="typeaheadOnSelect($event)"
-        [typeaheadOptionsLimit]="7" typeaheadOptionField="name" (typeaheadLoading)="changeTypeaheadLoading($event)" typeaheadWaitMs="500"
+        [typeaheadOptionsLimit]="7" typeaheadOptionField="name" (typeaheadLoading)="changeTypeaheadLoading($event)" typeaheadWaitMs="1200"
         placeholder="Product name" class="form-control">
       <div class="m-2" *ngIf="typeaheadLoading">
         <fa-icon [icon]="loadingIcon" [spin]="true" class="fa-2x" [styles]="{'color': '#20a8d8'}"></fa-icon>
