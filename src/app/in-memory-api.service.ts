@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api/interfaces';
-import { Product } from './autocomplete/product';
 
 @Injectable({
   providedIn: 'root'

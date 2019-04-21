@@ -7,8 +7,7 @@ import { Product } from './product';
 import { IconDefinition, faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-autocomplete',
-  templateUrl: './autocomplete.component.html',
-  styleUrls: ['./autocomplete.component.css']
+  templateUrl: './autocomplete.component.html'
 })
 export class AutocompleteComponent implements OnInit {
   asyncSelected: string;
@@ -18,6 +17,7 @@ export class AutocompleteComponent implements OnInit {
   typeaheadLoading: boolean;
   products: Product[] = new Array();
   loadingIcon: IconDefinition = faCircleNotch;
+  optionsLimit = 7;
 
   constructor(private productService: ProductService) { }
 
@@ -25,9 +25,9 @@ export class AutocompleteComponent implements OnInit {
     this.selected = e.item;
   }
 
-  search(token: string): Observable<any> {
+  search(token: string, limit: number): Observable<any> {
     // return this.productService.getProductsMock(token);
-    return this.productService.getFireDocs(token);
+    return this.productService.getFireDocs(token, limit);
   }
 
   changeTypeaheadLoading(e: boolean): void {
@@ -38,6 +38,6 @@ export class AutocompleteComponent implements OnInit {
     this.dataSource = Observable.create((observer: any) => {
       // Runs on every search
       observer.next(this.asyncSelected);
-    }).pipe(mergeMap((token: string) => this.search(token)));
+    }).pipe(mergeMap((token: string) => this.search(token, this.optionsLimit)));
   }
 }

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { MessageService } from '../message/message.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { catchError, filter, map } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { Product } from './product';
 import { AngularFirestore } from '@angular/fire/firestore';
 
@@ -34,11 +34,15 @@ export class ProductService {
       ));
   }
 
-  getFireDocs(token: string): Observable<any> {
-    return this.firestore
-      .collection('products', ref => ref.where('name', '>', token))
-      .valueChanges()
-      .pipe(catchError(err => this.handleError('getProducts', err)));
+  getFireDocs(token: string, limit: number): Observable<any> {
+    if (token == null || token.length < 2) {
+      return of(null);
+    } else {
+      return this.firestore
+        .collection('products', ref => ref.where('name', '>', token).limit(limit))
+        .valueChanges()
+        .pipe(catchError(err => this.handleError('getProducts', err)));
+    }
   }
 
   private handleError(method: string, res: HttpErrorResponse): Observable<any> {
