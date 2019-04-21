@@ -2,7 +2,7 @@
   "name": "autocomplete-angular",
   "description": "bootstrap/angular project that autocompletes async data",
   "author": "Mike Echevarria <mike.echevarria@gmail.com>",
-  "version": "0.1.0",
+  "version": "0.4.0",
   "license": "MIT",
   "repository": {
     "type": "git",
